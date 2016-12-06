@@ -46,6 +46,7 @@ if __name__ == '__main__':
     n_images = int(args.num)
     while len(image_urls) < n_images:
         search_result = google_search_image(args.keyword, len(image_urls))
+        search_result.reverse()
         while len(image_urls) < n_images and len(search_result) > 0:
             image_urls.append(search_result.pop())
 
