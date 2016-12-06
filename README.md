@@ -19,3 +19,10 @@ python download_image.py "cat"
 ```
 python download_image.py "cat" -n 1000 -d "cat_dir"
 ```
+
+## imagenet 1000カテゴリダウンロード
+以下のコマンドで、ImageNetの1000カテゴリをgoogleで画像検索し、それぞれ上位5枚を保存する。`download_1000_categories.py`を直接編集すれば、好きな枚数ダウンロード可能。
+
+```
+python download_1000_categories.py
+```
