@@ -6,7 +6,8 @@ import bs4
 # コマンドライン実行メソッド
 def exec_cmd(cmd):
     from subprocess import Popen, PIPE
-    p = Popen(cmd.split(' '), stdout=PIPE, stderr=PIPE)
+    splt = cmd.split(' ')
+    p = Popen([splt[0], splt[1], " ".join(splt[2:]).replace('"', '')], stdout=PIPE, stderr=PIPE)
     out, err = p.communicate()
     lines = str(out).split('\\n')[:-1]
     lines[0] = lines[0].split('\'')[1]
@@ -42,6 +43,6 @@ if __name__ == '__main__':
     search_result.reverse()
     while len(image_urls) < n_images and len(search_result) > 0:
         image_url = search_result.pop()
-        file_path = './%s/%s' % (args.dirname, image_url.split('/')[-1])
+        file_path = './%s/%s' % (args.dirname, len(image_urls))
         if(download_image(image_url, file_path)):
             image_urls.append(image_url)
