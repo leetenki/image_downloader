@@ -23,6 +23,15 @@ def download_image(url, file_path):
         print('※link not found')
         return False
 
+def get_format(url):
+    url_lower = url.lower()
+    if url_lower.find('png') > -1:
+        return 'png'
+    elif url_lower.find('gif') > -1:
+        return 'gif'
+    else:
+        return 'jpg' 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='download images from google')
     parser.add_argument('keyword', help='keyword to search for')
@@ -43,6 +52,6 @@ if __name__ == '__main__':
     search_result.reverse()
     while len(image_urls) < n_images and len(search_result) > 0:
         image_url = search_result.pop()
-        file_path = './%s/%s' % (args.dirname, len(image_urls))
+        file_path = './%s/%s.%s' % (args.dirname, len(image_urls), get_format(image_url))
         if(download_image(image_url, file_path)):
             image_urls.append(image_url)
